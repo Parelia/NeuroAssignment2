@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- rosneuro pre-build nodes -->
+	
+		<!-- acquisition arguments -->
+		<arg name="plugin" default='rosneuro::EGDDevice'/>
+		<arg name="devarg" default='ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
+		<arg name="framerate" default='16'/>
+		<arg name="samplerate" default='512'/>
+		
+		<!-- acquisition node -->
+		<node name="acquisition_node" pkg="rosneuro_acquisition" type="acquisition" output="screen">
+	  	  <param name="~plugin" value="$(arg plugin)"/>
+	  	  <param name="~devarg" value="$(arg devarg)"/>
+	  	  <param name="~samplerate" value="$(arg samplerate)"/>
+	  	  <param name="~framerate"  value="$(arg framerate)"/>
+	  	</node>
+	  	
+	  	
+	  	<!-- load filter chain parameters -->
+		<rosparam command="load" file="$(find rosneuro_tutorials)/config/ChainCfgDemo.yaml" />
+		
+		<!-- filter chain node -->	
+		<node name="filterchain_node" pkg="rosneuro_filters" type="filterchain_node" output="screen" >
+			<param name="configname" value="ChainCfgTest" />
+		</node>	
+
+	<!-- end rosneuro pre-build nodes -->
+	
+	
+	<!-- project nodes -->
+	
+		<!-- thresholding node -->
+		<node name="thresholding_node" pkg="logbandpower" type="thresholding_node" output="screen">
+	  	  <param name="channel"  value="1"/>
+	  	  <param name="threshold"  value="10"/>
+	  	</node>
+	  	
+	  	
+	  	<!-- bandpower node -->
+		<node name="bandpower_node" pkg="logbandpower" type="bandpower_node" output="screen" />
+	  	
+	<!-- end project nodes -->
+	
+	
+	<!-- rosbag node -->
+	
+	<!-- end rosbag node -->
+	
+</launch>
