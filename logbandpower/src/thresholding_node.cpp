@@ -27,7 +27,7 @@ void thresholdingCallback(const rosneuro_msgs::NeuroFrame::ConstPtr& msg) {
 	
 
 	for(int i=0; i < data.size(); i++){
-		//ROS_INFO("Channel: %d", channel_n);
+		//ROS_INFO("out");
 		/*
 		if(v[i] > threshold) {
 			rosneuro_msgs::NeuroEvent out_msg;
