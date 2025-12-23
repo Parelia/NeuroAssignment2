@@ -1,40 +1,25 @@
 #include <ros/ros.h>
 #include <rosneuro_msgs/NeuroFrame.h>
 #include <rosneuro_msgs/NeuroEvent.h>
-#include <math.h>
-#include <vector>
-#include <numeric>
-#include <iostream>
 
-
-ros::Publisher thresholding_pub;
-ros::Subscriber bandpower_sub;
 
 int channel;
 float threshold;
+ros::Publisher thresholding_pub;
 
 
 void thresholdingCallback(const rosneuro_msgs::NeuroFrame::ConstPtr& msg) {
 	ROS_INFO("Channel: %d", msg->eeg.info.nchannels);
-	if(msg->eeg.info.nchannels > channel) {
-		ROS_INFO("Channel number error");
+	if(channel > msg->eeg.info.nchannels) {
+		ROS_INFO("Input channel number error");
 		return;
 	}
 
-	std::vector<float>::const_iterator first = msg->eeg.data.begin();
-	std::vector<float>::const_iterator last = msg->eeg.data.begin() + 32;
-	std::vector<float> data(first, last);
-	
-
-	for(int i=0; i < data.size(); i++){
-		//ROS_INFO("out");
-		if(data[i] > threshold) {
-			rosneuro_msgs::NeuroEvent out_msg;
-			out_msg.event = 10;
-			thresholding_pub.publish(out_msg);
-		}
+	if(msg->eeg.data[channel-1] > threshold) {
+		rosneuro_msgs::NeuroEvent out_msg;
+		out_msg.event = 10;
+		thresholding_pub.publish(out_msg);
 	}
-
 
 	return;
 }
@@ -44,14 +29,13 @@ int main(int argc, char** argv) {
 
 	ros::init(argc, argv, "thresholding_node");
 	
-	ros::NodeHandle n;
+	ros::NodeHandle nh;
+	nh.param("channel", channel, 1);
+	nh.param("threshold", threshold, 10.0f);
 	
-    	n.param("channel", channel, 1);
-    	n.param("threshold", threshold, float(10));
+	thresholding_pub = nh.advertise<rosneuro_msgs::NeuroEvent>("/events/bus", 1);
 	
-	thresholding_pub = n.advertise<rosneuro_msgs::NeuroEvent>("/events/bus", 1);
-	
-	bandpower_sub = n.subscribe("/eeg/bandpower", 1, thresholdingCallback);
+	ros::Subscriber bandpower_sub = nh.subscribe("/eeg/bandpower", 1, thresholdingCallback);
 	
 	ros::spin();			
 	
