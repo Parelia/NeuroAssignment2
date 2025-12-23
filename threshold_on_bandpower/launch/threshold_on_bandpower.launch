@@ -9,7 +9,7 @@
 		<arg name="samplerate" default='512'/>
 		
 		<!-- acquisition node -->
-		<node name="acquisition_node" pkg="rosneuro_acquisition" type="acquisition" output="screen">
+		<node name="acquisition_node" pkg="threshold_on_bandpower" type="acquisition" output="screen">
 	  	  <param name="~plugin" value="$(arg plugin)"/>
 	  	  <param name="~devarg" value="$(arg devarg)"/>
 	  	  <param name="~samplerate" value="$(arg samplerate)"/>
@@ -18,11 +18,11 @@
 	  	
 	  	
 	  	<!-- load filter chain parameters -->
-		<rosparam command="load" file="$(find threshold_on_bandpower)/config/ChainCfgDemo.yaml" />
+		<rosparam command="load" file="$(find threshold_on_bandpower)/config/ChainCfg.yaml" />
 		
 		<!-- filter chain node -->	
-		<node name="filterchain_node" pkg="rosneuro_filters" type="filterchain_node" output="screen" >
-			<param name="configname" value="ChainCfgTest" />
+		<node name="filterchain_node" pkg="threshold_on_bandpower" type="filterchain" output="screen" >
+			<param name="configname" value="ChainCfgList" />
 		</node>	
 
 	<!-- end rosneuro pre-build nodes -->
