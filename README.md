@@ -1,8 +1,8 @@
 ## Set Up
-Material to be downloaded:
-- https://github.com/rosneuro/rosneuro_tutorials.git
+Material to look at before starting:
+- https://github.com/rosneuro/rosneuro_filters.git
 - https://github.com/rosneuro/rosneuro_acquisition.git
-- https://github.com/Parelia/NeuroAssignment2.git
+- https://wiki.ros.org/ROS/Tutorials/Recording%20and%20playing%20back%20data
 
 Lines to be added to .bashrc to set up console:
 - source /opt/ros/noetic/setup.bash
@@ -20,8 +20,6 @@ echo "source devel/setup.bash" >> .bashrc
 cd workspaces/rosneuro_ws/src/
 
 rm -r rosneuro_tutorials
-
-git clone https://github.com/rosneuro/rosneuro_tutorials.git
 
 git clone https://github.com/rosneuro/rosneuro_acquisition.git
 
