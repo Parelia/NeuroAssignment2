@@ -11,8 +11,8 @@ Lines to be added to .bashrc to set up console:
 Launch file of the project:
 - roslaunch src/logbandpower/launch/launcher.launch
 
-***
-##Full command line:
+___
+## Full command line:
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
 
 echo "source devel/setup.bash" >> .bashrc
