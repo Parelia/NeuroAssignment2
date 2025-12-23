@@ -11,9 +11,8 @@ Lines to be added to .bashrc to set up console:
 Launch file of the project:
 - roslaunch src/logbandpower/launch/launcher.launch
 
----
-Full command line:
-
+***
+##Full command line:
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
 
 echo "source devel/setup.bash" >> .bashrc
@@ -25,4 +24,3 @@ git clone https://github.com/rosneuro/rosneuro_tutorials.git
 git clone https://github.com/rosneuro/rosneuro_acquisition.git
 
 git clone https://github.com/Parelia/NeuroAssignment2.git
-
