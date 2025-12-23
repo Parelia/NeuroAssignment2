@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>logbandpower</name>
+  <name>threshold_on_bandpower</name>
   <version>0.1.0</version>
   <description>Second Neurorobotics Assignment</description>
   
   <maintainer email="elia.parussolo@studenti.unipd.it">Elia Parussolo</maintainer>
-  <author email="elia.parussolo@studenti.unipd.it">Elia Parussolo</author>
-  <author email="elia.parussolo@studenti.unipd.it">Elia Parussolo</author>
-  <author email="elia.parussolo@studenti.unipd.it">Elia Parussolo</author>
+  <author email="aymen.louachama@studenti.unipd.it">Aymen Louachama</author>
+  <author email="ginevra.borsetti@studenti.unipd.it">Ginevra Borsetti</author>
+  <author email="elisabettamaria.moschella@studenti.unipd.it">Eisabetta Maria Moschella</author>
   
   <license>GPLv3</license>
  

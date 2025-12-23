@@ -4,7 +4,7 @@
 	
 		<!-- acquisition arguments -->
 		<arg name="plugin" default='rosneuro::EGDDevice'/>
-		<arg name="devarg" default='ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
+		<arg name="devarg" default='home/user/workspaces/rosneuro_ws/src/ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
 		<arg name="framerate" default='16'/>
 		<arg name="samplerate" default='512'/>
 		
@@ -31,14 +31,14 @@
 	<!-- project nodes -->
 	
 		<!-- thresholding node -->
-		<node name="thresholding_node" pkg="logbandpower" type="thresholding_node" output="screen">
+		<node name="thresholding_node" pkg="threshold_on_bandpower" type="thresholding" output="screen">
 	  	  <param name="channel"  value="1"/>
 	  	  <param name="threshold"  value="10"/>
 	  	</node>
 	  	
 	  	
 	  	<!-- bandpower node -->
-		<node name="bandpower_node" pkg="logbandpower" type="bandpower_node" output="screen" />
+		<node name="bandpower_node" pkg="threshold_on_bandpower" type="bandpower" output="screen" />
 	  	
 	<!-- end project nodes -->
 	

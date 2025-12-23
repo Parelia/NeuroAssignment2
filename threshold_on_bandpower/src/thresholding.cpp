@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <rosneuro_msgs/NeuroFrame.h>
-#include <rosneuro_data/NeuroEvent.hpp>
+#include <rosneuro_msgs/NeuroEvent.h>
 #include <math.h>
 #include <vector>
 #include <numeric>
@@ -28,16 +28,15 @@ void thresholdingCallback(const rosneuro_msgs::NeuroFrame::ConstPtr& msg) {
 
 	for(int i=0; i < data.size(); i++){
 		//ROS_INFO("out");
-		/*
-		if(v[i] > threshold) {
+		if(data[i] > threshold) {
 			rosneuro_msgs::NeuroEvent out_msg;
 			out_msg.event = 10;
 			thresholding_pub.publish(out_msg);
-		}*/
+		}
 	}
 
 
-	return 0;
+	return;
 }
 
 
@@ -48,7 +47,7 @@ int main(int argc, char** argv) {
 	ros::NodeHandle n;
 	
     	n.param("channel", channel, 1);
-    	n.param("threshold", threshold, 1);
+    	n.param("threshold", threshold, float(10));
 	
 	thresholding_pub = n.advertise<rosneuro_msgs::NeuroEvent>("/events/bus", 1);
 	
