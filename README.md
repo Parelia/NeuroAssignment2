@@ -19,6 +19,8 @@ echo "source devel/setup.bash" >> .bashrc
 
 cd workspaces/rosneuro_ws/src/
 
+rm -r rosneuro_tutorials
+
 git clone https://github.com/Parelia/NeuroAssignment2.git  .
 
 git clone https://github.com/rosneuro/rosneuro_acquisition.git
