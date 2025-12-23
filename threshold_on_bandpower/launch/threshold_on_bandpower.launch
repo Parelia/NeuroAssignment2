@@ -18,7 +18,7 @@
 	  	
 	  	
 	  	<!-- load filter chain parameters -->
-		<rosparam command="load" file="$(find rosneuro_tutorials)/config/ChainCfgDemo.yaml" />
+		<rosparam command="load" file="$(find threshold_on_bandpower)/config/ChainCfgDemo.yaml" />
 		
 		<!-- filter chain node -->	
 		<node name="filterchain_node" pkg="rosneuro_filters" type="filterchain_node" output="screen" >
@@ -44,7 +44,10 @@
 	
 	
 	<!-- rosbag node -->
-	
-	<!-- end rosbag node -->
+	<arg name="record" default="false"/>
+	<group if="$(arg record)">
+		<node name="rosbag_record_node" pkg="rosbag" type="record" output="screen"
+			args="-O /home/user/workspaces/rosneuro_ws/bags/record /eeg/filtered /eeg/bandpower /events/bus" />
+	</group>		
 	
 </launch>
