@@ -1,4 +1,4 @@
-### Report of the second assignment of Neurorobotics
+# Report of the second assignment of Neurorobotics
 
 ## Contributes
 
