@@ -74,3 +74,9 @@ int main(int argc, char** argv) {
 	
 	return 0;
 }
+
+/*
+	Error in XmlRpcClient::writeRequest: write error (Connection refused).
+	[filterchain_node-2] process has died [pid 96959, exit code -11, cmd /home/user/workspaces/rosneuro_ws/devel/lib/threshold_on_bandpower/my_filterchain __name:=filterchain_node __log:=/home/user/.ros/log/02c6fa5c-e0df-11f0-923c-4db0aef32cf2/filterchain_node-2.log].
+	log file: /home/user/.ros/log/02c6fa5c-e0df-11f0-923c-4db0aef32cf2/filterchain_node-2*.log
+*/

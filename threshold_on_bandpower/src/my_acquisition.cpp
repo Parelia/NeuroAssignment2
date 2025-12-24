@@ -282,3 +282,13 @@ int main(int argc, char** argv) {
 	return 0;
 }
 
+/*
+	[INFO] [1766590954.328235561]: Acquisition correctly created the device: egddev
+	[INFO] [1766590954.330408067]: Acquisition correctly configured
+	dev_name_arg: datafile|path|ah7.20170613.161402.offline.mi.mi_bhbf.gdf
+	[ERROR] [1766590954.330651452]: Cannot open the 'egddev' device with arg=datafile|path|ah7.20170613.161402.offline.mi.mi_bhbf.gdf and samplerate=512 Hz
+	QUA 
+	[ERROR] [1766590954.330697103]: Cannot open the device
+	[ERROR] [1766590954.330711943]: Acquisition interrupted while running
+	[Error] - Cannot close the device 'egddev': Invalid argument
+*/

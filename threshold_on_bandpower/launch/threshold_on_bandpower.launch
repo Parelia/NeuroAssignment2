@@ -4,7 +4,8 @@
 	
 		<!-- acquisition arguments -->
 		<arg name="plugin" default='rosneuro::EGDDevice'/>
-		<arg name="devarg" default='home/user/workspaces/rosneuro_ws/src/ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
+		<arg name="devarg" default='ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
+		<!-- /home/user/workspaces/rosneuro_ws/src/ah7.20170613.161402.offline.mi.mi_bhbf -->
 		<arg name="framerate" default='16'/>
 		<arg name="samplerate" default='512'/>
 		

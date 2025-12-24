@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(threshold_on_bandpower)
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  pluginlib
   rosneuro_filters
   rosneuro_acquisition
   rosneuro_msgs
@@ -18,7 +17,7 @@ find_package(PkgConfig)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp rosneuro_filters rosneuro_acquisition rosneuro_msgs
+  CATKIN_DEPENDS roscpp pluginlib rosneuro_filters rosneuro_acquisition rosneuro_msgs
   #DEPENDS
 )
 

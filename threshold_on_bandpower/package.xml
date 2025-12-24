@@ -13,12 +13,12 @@
  
   <buildtool_depend>catkin</buildtool_depend>
   
-  <build_depend>roscpp</build_depend>
-  <build_export_depend>roscpp</build_export_depend>
-  <exec_depend>roscpp</exec_depend>
-  
+  <depend>roscpp</depend>
   <depend>rosneuro_msgs</depend>
   <depend>rosneuro_filters</depend>
   <depend>rosneuro_acquisition</depend>
+  
+  <build_depend>pluginlib</build_depend>
+  <exec_depend>pluginlib</exec_depend>
   
 </package>
