@@ -2,16 +2,16 @@
 #include <rosneuro_msgs/NeuroFrame.h>
 #include <rosneuro_msgs/NeuroEvent.h>
 
-
+// Global variables
 int channel;
 float threshold;
 ros::Publisher thresholding_pub;
 
-
+// Callback
 void thresholdingCallback(const rosneuro_msgs::NeuroFrame::ConstPtr& msg) {
 	ROS_INFO("Channel: %d", msg->eeg.info.nchannels);
 	if(channel > msg->eeg.info.nchannels) {
-		ROS_INFO("Input channel number error");
+		ROS_ERROR("Input channel number is not valid");
 		return;
 	}
 

@@ -55,3 +55,22 @@ namespace rosneuro {
         this->pub_.publish(this->neuromsg_);
     }
 }
+
+
+int main(int argc, char** argv) {
+
+	ros::init(argc, argv, "filterchain_node");
+
+	rosneuro::FilterChainNode filter_chain;
+
+	if(!filter_chain.configure()) {
+		ROS_ERROR("[filterchain_node] Configuration failed");
+		return -1;
+	}
+
+    filter_chain.run();
+    
+	ros::shutdown();
+	
+	return 0;
+}

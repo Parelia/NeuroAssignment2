@@ -17,8 +17,8 @@ find_package(PkgConfig)
 
 catkin_package(
   INCLUDE_DIRS include
-  #LIBRARIES ${PROJECT_NAME}_myfilter
-  CATKIN_DEPENDS roscpp
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS roscpp rosneuro_filters rosneuro_acquisition rosneuro_msgs
   #DEPENDS
 )
 
@@ -48,11 +48,11 @@ add_executable(bandpower src/bandpower.cpp)
 target_link_libraries(bandpower ${catkin_LIBRARIES})
 add_dependencies(bandpower ${catkin_EXPORTED_TARGETS})
 
-add_executable(filterchain src/my_filterchain.cpp)
-target_link_libraries(filterchain ${catkin_LIBRARIES})
-add_dependencies(filterchain ${catkin_EXPORTED_TARGETS})
+add_executable(my_filterchain src/my_filterchain.cpp)
+target_link_libraries(my_filterchain ${catkin_LIBRARIES})
+add_dependencies(my_filterchain ${catkin_EXPORTED_TARGETS})
 
-add_executable(aquisition src/my_aquisition.cpp)
-target_link_libraries(aquisition ${catkin_LIBRARIES})
-add_dependencies(aquisition ${catkin_EXPORTED_TARGETS})
+add_executable(my_acquisition src/my_acquisition.cpp)
+target_link_libraries(my_acquisition ${catkin_LIBRARIES})
+add_dependencies(my_acquisition ${catkin_EXPORTED_TARGETS})
 
