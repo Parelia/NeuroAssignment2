@@ -29,4 +29,4 @@ git remote add origin https://github.com/Parelia/NeuroAssignment2.git
 
 git fetch
 
-git pull
+git pull origin master
