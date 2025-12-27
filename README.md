@@ -13,20 +13,17 @@ Launch file of the project:
 
 ___
 ## Full command line:
+Paste and run on /home
+```
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
-
 echo "source devel/setup.bash" >> .bashrc
-
 cd workspaces/rosneuro_ws/src/
-
 rm -r rosneuro_tutorials
-
 git clone https://github.com/rosneuro/rosneuro_acquisition.git
-
 git init
-
 git remote add origin https://github.com/Parelia/NeuroAssignment2.git
-
 git pull origin master --allow-unrelated-histories
-
+```
+```
 git branch --set-upstream-to=origin/master master
+```
