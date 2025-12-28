@@ -12,7 +12,7 @@ class BandPowerNode {
 		ros::Publisher bandpower_pub_;
 		ros::Subscriber filtered_sub_;
 		
-		int ex_n;									// Exectution number to wait until buffer is filled
+		int ex_n;									// Execution number to wait until buffer is filled
 		std::vector<std::vector<float>> buffer_;	// [channel x samples]
 		std::vector<float> averages_;				// [channel x 1]
 
@@ -33,42 +33,42 @@ class BandPowerNode {
 			
 			return new_msg;
 		}
-	
+
 		// Sub callback: extract, store and compute data, then publish
 		void bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr& msg) {
 			// New data info
 			int nchannels = msg->eeg.info.nchannels;
 			int nsamples = msg->eeg.info.nsamples;
-		 	
-		 	// Only on first call, initialize buffers
+
+			// Only on first call, initialize buffers
 			if(ex_n == 0) {
 				buffer_.resize(nchannels, std::vector<float>(msg->sr, 0.0f));
 				averages_.resize(nchannels, 0.0f);
 			}
 			ex_n++;
-		    
-		    // Buffer operations wrapped in one cycle
-		    for(int i=0; i < nchannels; i++) {
-		   		// Remove the old data
-		        buffer_[i].erase(buffer_[i].begin(), buffer_[i].begin() + nsamples);
+				
+			// Buffer operations wrapped in one cycle
+			for(int i=0; i < nchannels; i++) {
+				// Remove the old data
+				buffer_[i].erase(buffer_[i].begin(), buffer_[i].begin() + nsamples);
 
-		    	// Dynamically add new data
-		        buffer_[i].insert(buffer_[i].end(), msg->eeg.data.begin() + i * nsamples, msg->eeg.data.begin() + (i + 1) * nsamples);
-		    }
+				// Dynamically add new data
+				buffer_[i].insert(buffer_[i].end(), msg->eeg.data.begin() + i * nsamples, msg->eeg.data.begin() + (i + 1) * nsamples);
+			}
 
-		    // Compute the bandpower [square - log - mean]
-		    if(ex_n * nsamples >= msg->sr) { // wait until buffer is filled
-		        for(int i=0; i < nchannels; i++) {
-		            float current_bandpower = 0.0;
-		            for(int j=0; j < buffer_[i].size(); j++)
-		                current_bandpower += std::log(buffer_[i][j] * buffer_[i][j] + 1e-12);
-		            averages_[i] = current_bandpower / buffer_[i].size();
-		        }
-		    }
-		    
-		    // Publish result 
-		    bandpower_pub_.publish(newEEGFrameFromOld(*msg, averages_));
-			
+			// Compute the bandpower [square - log - mean]
+			if(ex_n * nsamples >= msg->sr) { // wait until buffer is filled
+				for(int i=0; i < nchannels; i++) {
+					float current_bandpower = 0.0;
+					for(int j=0; j < buffer_[i].size(); j++)
+						current_bandpower += std::log(buffer_[i][j] * buffer_[i][j] + 1e-12);
+					averages_[i] = current_bandpower / buffer_[i].size();
+				}
+			}
+
+			// Publish result 
+			bandpower_pub_.publish(newEEGFrameFromOld(*msg, averages_));
+
 			return;
 		}
 };

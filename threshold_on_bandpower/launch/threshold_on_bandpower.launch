@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- rosbag node -->
-	<arg name="record" default="true"/>
+	<arg name="record" default="false"/>
 	<group if="$(arg record)">
 		<node name="rosbag_record_node" pkg="rosbag" type="record" output="screen"
 			args="-O /home/user/workspaces/rosneuro_ws/bags/record /eeg/filtered /eeg/bandpower /events/bus" />
