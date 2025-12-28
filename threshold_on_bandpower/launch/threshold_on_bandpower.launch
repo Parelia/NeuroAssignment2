@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- rosbag node -->
-	<arg name="record" default="false"/>
+	<arg name="record" default="true"/>
 	<group if="$(arg record)">
 		<node name="rosbag_record_node" pkg="rosbag" type="record" output="screen"
-			args="-O /home/user/workspaces/rosneuro_ws/bags/record /eeg/filtered /eeg/bandpower /events/bus" />
+			args="-O $(find threshold_on_bandpower)/bags/record /eeg/filtered /eeg/bandpower /events/bus" />
 	</group>
 
 
