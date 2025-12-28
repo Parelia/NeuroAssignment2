@@ -9,8 +9,9 @@ Lines to be added to .bashrc to set up console:
 - source devel/setup.bash
 
 Launch file line for the project:
-- roslaunch src/threshold_on_bandpower/launch/threshold_on_bandpower.launch
-
+```
+roslaunch src/threshold_on_bandpower/launch/threshold_on_bandpower.launch
+```
 ___
 ## Set Up
 Paste and run on /home
