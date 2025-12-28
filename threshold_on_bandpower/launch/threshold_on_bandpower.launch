@@ -4,7 +4,7 @@
 	
 		<!-- acquisition arguments -->
 		<arg name="plugin" default='rosneuro::EGDDevice'/>
-		<arg name="devarg" default='ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
+		<arg name="devarg" default='$(find threshold_on_bandpower)/data/ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
 		<!-- /home/user/workspaces/rosneuro_ws/src/ah7.20170613.161402.offline.mi.mi_bhbf -->
 		<arg name="framerate" default='16'/>
 		<arg name="samplerate" default='512'/>
@@ -19,11 +19,11 @@
 	  	
 	  	
 	  	<!-- load filter chain parameters -->
-		<rosparam command="load" file="$(find threshold_on_bandpower)/config/ChainCfg.yaml" />
+		<rosparam command="load" file="$(find threshold_on_bandpower)/config/MyChainCfg.yaml" />
 		
 		<!-- filter chain node -->	
 		<node name="filterchain_node" pkg="threshold_on_bandpower" type="my_filterchain" output="screen" >
-			<param name="configname" value="ChainCfgList" />
+			<param name="configname" value="ChainCfg" />
 		</node>	
 
 	<!-- end rosneuro pre-build nodes -->
@@ -34,7 +34,7 @@
 		<!-- thresholding node -->
 		<node name="thresholding_node" pkg="threshold_on_bandpower" type="thresholding" output="screen">
 	  	  <param name="channel"  value="1"/>
-	  	  <param name="threshold"  value="10"/>
+	  	  <param name="threshold"  value="1"/>
 	  	</node>
 	  	
 	  	

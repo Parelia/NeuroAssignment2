@@ -1,4 +1,4 @@
-ChainCfgList:
+ChainCfg:
     - name: butterworth-lowpass
       type: rosneuro_filters/ButterworthFilterFloat
       params: 

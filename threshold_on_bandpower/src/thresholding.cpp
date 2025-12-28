@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
 	
 	ros::NodeHandle nh;
 	nh.param("channel", channel, 1);
-	nh.param("threshold", threshold, 10.0f);
+	nh.param("threshold", threshold, 1.0f);
 	
 	thresholding_pub = nh.advertise<rosneuro_msgs::NeuroEvent>("/events/bus", 1);
 	
