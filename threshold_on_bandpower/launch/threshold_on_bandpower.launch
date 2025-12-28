@@ -1,11 +1,18 @@
 <?xml version="1.0"?>
 <launch>
+	<!-- rosbag node -->
+	<arg name="record" default="true"/>
+	<group if="$(arg record)">
+		<node name="rosbag_record_node" pkg="rosbag" type="record" output="screen"
+			args="-O /home/user/workspaces/rosneuro_ws/bags/record /eeg/filtered /eeg/bandpower /events/bus" />
+	</group>
+
+
 	<!-- rosneuro pre-build nodes -->
 	
 		<!-- acquisition arguments -->
 		<arg name="plugin" default='rosneuro::EGDDevice'/>
-		<arg name="devarg" default='$(find threshold_on_bandpower)/data/ah7.20170613.161402.offline.mi.mi_bhbf.gdf'/>
-		<!-- /home/user/workspaces/rosneuro_ws/src/ah7.20170613.161402.offline.mi.mi_bhbf -->
+		<arg name="devarg" default='/home/user/workspaces/rosneuro_ws/src/data.gdf'/>
 		<arg name="framerate" default='16'/>
 		<arg name="samplerate" default='512'/>
 		
@@ -41,14 +48,5 @@
 	  	<!-- bandpower node -->
 		<node name="bandpower_node" pkg="threshold_on_bandpower" type="bandpower" output="screen" />
 	  	
-	<!-- end project nodes -->
-	
-	
-	<!-- rosbag node -->
-	<arg name="record" default="false"/>
-	<group if="$(arg record)">
-		<node name="rosbag_record_node" pkg="rosbag" type="record" output="screen"
-			args="-O /home/user/workspaces/rosneuro_ws/bags/record /eeg/filtered /eeg/bandpower /events/bus" />
-	</group>		
-	
+	<!-- end project nodes -->		
 </launch>
