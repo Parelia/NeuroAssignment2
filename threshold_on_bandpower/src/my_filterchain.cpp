@@ -2,8 +2,8 @@
 
 namespace rosneuro {
     FilterChainNode::FilterChainNode(void) : p_nh_("~") {
-        this->sub_ = this->nh_.subscribe("/eeg/raw", 1, &FilterChainNode::on_received_neurodata, this);
-        this->pub_ = this->nh_.advertise<rosneuro_msgs::NeuroFrame>("/eeg/filtered", 1);
+        this->sub_ = this->nh_.subscribe("/eeg/raw", 1, &FilterChainNode::on_received_neurodata, this); // Modified
+        this->pub_ = this->nh_.advertise<rosneuro_msgs::NeuroFrame>("/eeg/filtered", 1);				// Modified
     }
 
     FilterChainNode::~FilterChainNode(void) {
@@ -57,12 +57,13 @@ namespace rosneuro {
 }
 
 
+// Added
 int main(int argc, char** argv) {
 
 	ros::init(argc, argv, "filterchain_node");
 
 	rosneuro::FilterChainNode filter_chain;
-
+	
 	if(!filter_chain.configure()) {
 		ROS_ERROR("[filterchain_node] Configuration failed");
 		return -1;

@@ -16,6 +16,7 @@ class ThresholdingNode {
 
 	public:
 		ThresholdingNode();
+		bool setParams();
 		void thresholdingCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&);
 };
 

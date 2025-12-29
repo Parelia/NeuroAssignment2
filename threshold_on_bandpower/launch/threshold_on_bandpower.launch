@@ -37,11 +37,15 @@
 	
 	
 	<!-- project nodes -->
+		
+		<!-- thresholding arguments -->
+		<arg name="channel" default='9'/>
+		<arg name="threshold" default='15'/>
 	
 		<!-- thresholding node -->
 		<node name="thresholding_node" pkg="threshold_on_bandpower" type="thresholding" output="screen">
-	  	  <param name="channel"  value="9"/>
-	  	  <param name="threshold"  value="1"/>
+	  	  <param name="~channel"  value="$(arg channel)"/>
+	  	  <param name="~threshold"  value="$(arg threshold)"/>
 	  	</node>
 	  	
 	  	
