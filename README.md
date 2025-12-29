@@ -3,6 +3,9 @@
 ## Info
 The package acquires data from external devices and publishes it as a **NeuroFrame** message ([rosneuro_msgs](https://github.com/rosneuro/rosneuro_msgs)). Each published message represents a chunk of data as `samples x channels`. This defines a **framerate** according to which the data is published to other modules. For instance, if the device provides data at 512 Hz (sampling rate) and the acquisition is set to have a framerate of 16 Hz, each **NeuroFrame** will contain 32 samples (x channels) of data.
 
+Graph of the relationship between the project nodes:
+![Missing Image](rosgraph.png)
+
 Launch file line of the project:
 ```
 roslaunch threshold_on_bandpower threshold_on_bandpower.launch
