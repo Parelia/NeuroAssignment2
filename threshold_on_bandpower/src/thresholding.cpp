@@ -38,6 +38,7 @@ void ThresholdingNode::thresholdingCallback(const rosneuro_msgs::NeuroFrame::Con
 		rosneuro_msgs::NeuroEvent out_msg;
 		out_msg.event = 10;
 		this->thresholding_pub_.publish(out_msg);
+		ROS_INFO("A new NeuroEvent have been published");
 	}
 
 	return;

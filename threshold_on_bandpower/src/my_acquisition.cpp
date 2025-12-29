@@ -3,7 +3,7 @@
 namespace rosneuro {
 
 	Acquisition::Acquisition(void) : p_nh_("~") {
-		this->topic_	 = "/eeg/raw"; 
+		this->topic_	 = "/eeg/raw"; // Modified
 		this->autostart_ = false;
 		this->state_	 = Acquisition::IS_IDLE;
 		this->loader_.reset(new pluginlib::ClassLoader<Device>("rosneuro_acquisition", "rosneuro::Device"));
@@ -268,7 +268,7 @@ namespace rosneuro {
 
 }
 
-
+// Added
 int main(int argc, char** argv) {
 
 	ros::init(argc, argv, "acquisition_node");
