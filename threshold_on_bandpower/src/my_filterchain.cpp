@@ -68,15 +68,10 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
-    filter_chain.run();
+	filter_chain.run();
     
 	ros::shutdown();
 	
 	return 0;
 }
 
-/*
-Error in XmlRpcClient::writeRequest: write error (Connection refused).
-[filterchain_node-3] process has died [pid 34779, exit code -11, cmd /home/user/workspaces/rosneuro_ws/devel/lib/threshold_on_bandpower/my_filterchain __name:=filterchain_node __log:=/home/user/.ros/log/093f1af8-e42d-11f0-9fe3-9f5b98d45b14/filterchain_node-3.log].
-log file: /home/user/.ros/log/093f1af8-e42d-11f0-9fe3-9f5b98d45b14/filterchain_node-3*.log
-*/

@@ -40,7 +40,7 @@
 	
 		<!-- thresholding node -->
 		<node name="thresholding_node" pkg="threshold_on_bandpower" type="thresholding" output="screen">
-	  	  <param name="channel"  value="1"/>
+	  	  <param name="channel"  value="9"/>
 	  	  <param name="threshold"  value="1"/>
 	  	</node>
 	  	

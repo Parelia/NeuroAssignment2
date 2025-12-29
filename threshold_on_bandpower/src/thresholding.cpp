@@ -18,7 +18,7 @@ void ThresholdingNode::thresholdingCallback(const rosneuro_msgs::NeuroFrame::Con
 		return;
 	}
 
-	if(msg->eeg.data[channel-1] > this->threshold) {
+	if(msg->eeg.data[this->channel-1] > this->threshold) {
 		rosneuro_msgs::NeuroEvent out_msg;
 		out_msg.event = 10;
 		this->thresholding_pub_.publish(out_msg);
