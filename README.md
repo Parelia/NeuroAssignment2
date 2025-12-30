@@ -29,6 +29,7 @@ Check before starting:
 - https://wiki.ros.org/ROS/Tutorials/Recording%20and%20playing%20back%20data
 
 ## Set Up
+Paste and run in the terminal in /home, then open a new terminal in the workspace to launch the project.
 ### User
 ```
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
@@ -40,7 +41,6 @@ cd ..
 catkin_make
 ```
 ### Editor
-Paste and run on the terminal in /home, then open a new terminal in the workspace to start working:
 ```
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
 echo "source devel/setup.bash" >> .bashrc
