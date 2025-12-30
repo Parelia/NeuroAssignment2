@@ -17,19 +17,24 @@
 		<arg name="samplerate" default='512'/>
 		
 		<!-- acquisition node -->
-		<node name="acquisition_node" pkg="threshold_on_bandpower" type="my_acquisition" output="screen">
-	  	  <param name="~plugin" value="$(arg plugin)"/>
-	  	  <param name="~devarg" value="$(arg devarg)"/>
-	  	  <param name="~samplerate" value="$(arg samplerate)"/>
-	  	  <param name="~framerate"  value="$(arg framerate)"/>
-	  	</node>
+		<node name="acquisition_node" pkg="rosneuro_acquisition" type="acquisition" output="screen">
+			<remap from="/neurodata" to="/eeg/raw" />
+		  
+			<param name="~plugin" value="$(arg plugin)"/>
+			<param name="~devarg" value="$(arg devarg)"/>
+			<param name="~samplerate" value="$(arg samplerate)"/>
+			<param name="~framerate"  value="$(arg framerate)"/>
+		</node>
 	  	
 	  	
-	  	<!-- load filter chain parameters -->
+		<!-- load filter chain parameters -->
 		<rosparam command="load" file="$(find threshold_on_bandpower)/config/MyChainCfg.yaml" />
 		
 		<!-- filter chain node -->	
-		<node name="filterchain_node" pkg="threshold_on_bandpower" type="my_filterchain" output="screen" >
+		<node name="filterchain_node" pkg="rosneuro_filters" type="filterchain_node" output="screen">
+			<remap from="/neurodata" to="/eeg/raw" />
+			<remap from="/neurodata_filtered" to="/eeg/filtered" />
+			
 			<param name="configname" value="ChainCfg" />
 		</node>	
 
@@ -37,20 +42,26 @@
 	
 	
 	<!-- project nodes -->
+	
+		<!-- bandpower node -->
+		<node name="bandpower_node" pkg="threshold_on_bandpower" type="bandpower" output="screen">
+			<remap from="/neurodata" to="/eeg/filtered" />
+			<remap from="/neurodata_bandpower" to="/eeg/bandpower" />
+		</node>
+		
 		
 		<!-- thresholding arguments -->
 		<arg name="channel" default='9'/>
-		<arg name="threshold" default='15'/>
+		<arg name="threshold" default='1'/>
 	
 		<!-- thresholding node -->
 		<node name="thresholding_node" pkg="threshold_on_bandpower" type="thresholding" output="screen">
-	  	  <param name="~channel"  value="$(arg channel)"/>
-	  	  <param name="~threshold"  value="$(arg threshold)"/>
-	  	</node>
-	  	
-	  	
-	  	<!-- bandpower node -->
-		<node name="bandpower_node" pkg="threshold_on_bandpower" type="bandpower" output="screen" />
+			<remap from="/neurodata" to="/eeg/bandpower" />
+			<remap from="/neurodata_event" to="/events/bus" />
+			
+			<param name="~channel"  value="$(arg channel)"/>
+			<param name="~threshold"  value="$(arg threshold)"/>
+		</node>
 	  	
 	<!-- end project nodes -->		
 </launch>

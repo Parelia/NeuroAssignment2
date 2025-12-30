@@ -14,8 +14,8 @@ ThresholdingNode::ThresholdingNode() {
 		ros::shutdown();
 	} else {
 		// Initialize ROS components: Publisher and Subscriber
-		this->thresholding_pub_ = nh_.advertise<rosneuro_msgs::NeuroEvent>("/events/bus", 1);
-		this->bandpower_sub_ = nh_.subscribe("/eeg/bandpower", 1, &ThresholdingNode::thresholdingCallback, this);
+		this->bandpower_sub_ = nh_.subscribe("/neurodata", 1, &ThresholdingNode::thresholdingCallback, this);
+		this->thresholding_pub_ = nh_.advertise<rosneuro_msgs::NeuroEvent>("/neurodata_event", 1);
 	}
 }
 

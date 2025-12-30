@@ -9,8 +9,8 @@
 // Constructor for the BandPowerNode class
 BandPowerNode::BandPowerNode() : ex_n(0) {
 	// Initialize ROS components: Publisher and Subscriber
-	this->bandpower_pub_ = nh_.advertise<rosneuro_msgs::NeuroFrame>("/eeg/bandpower", 1);
-	this->filtered_sub_ = nh_.subscribe("/eeg/filtered", 1, &BandPowerNode::bandpowerCallback, this);
+	this->filtered_sub_ = nh_.subscribe("/neurodata", 1, &BandPowerNode::bandpowerCallback, this);
+	this->bandpower_pub_ = nh_.advertise<rosneuro_msgs::NeuroFrame>("/neurodata_bandpower", 1);
 }
 
 // Function to generate a new EEG frame with updated data
@@ -62,6 +62,7 @@ void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&
 
 	// Publish the computed result
 	this->bandpower_pub_.publish(newEEGFrameFromOld(*msg, this->averages_));
+	ROS_INFO("A new NeuroFrame have been published");
 
 	return;
 }
