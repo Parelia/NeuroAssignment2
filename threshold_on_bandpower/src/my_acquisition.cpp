@@ -1,4 +1,6 @@
-#include "rosneuro_acquisition/Acquisition.hpp"
+// Copy of Acquisition.cpp
+
+#include "rosneuro_acquisition/Acquisition.hpp" // Modified
 
 namespace rosneuro {
 
@@ -268,7 +270,7 @@ namespace rosneuro {
 
 }
 
-// Added
+// Added from run.cpp
 int main(int argc, char** argv) {
 
 	ros::init(argc, argv, "acquisition_node");

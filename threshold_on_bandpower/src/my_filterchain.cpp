@@ -1,3 +1,5 @@
+// Copy of FilterChainNode.cpp
+
 #include "rosneuro_filters/FilterChainNode.h"
 
 namespace rosneuro {
@@ -57,19 +59,19 @@ namespace rosneuro {
 }
 
 
-// Added
+// Added from RunFilterChainNode.cpp
 int main(int argc, char** argv) {
 
 	ros::init(argc, argv, "filterchain_node");
 
 	rosneuro::FilterChainNode filter_chain;
-	
+
 	if(!filter_chain.configure()) {
 		ROS_ERROR("[filterchain_node] Configuration failed");
 		return -1;
 	}
 
-	filter_chain.run();
+    filter_chain.run();
     
 	ros::shutdown();
 	
