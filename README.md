@@ -29,19 +29,31 @@ Check before starting:
 - https://wiki.ros.org/ROS/Tutorials/Recording%20and%20playing%20back%20data
 
 ## Set Up
+### User
+```
+echo "source /opt/ros/noetic/setup.bash" >> .bashrc
+echo "source devel/setup.bash" >> .bashrc
+cd workspaces/rosneuro_ws/src/
+rm -r rosneuro_tutorials
+git clone https://github.com/Parelia/NeuroAssignment2.git
+cd ..
+catkin_make
+```
+### Editor
 Paste and run on the terminal in /home, then open a new terminal in the workspace to start working:
 ```
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
 echo "source devel/setup.bash" >> .bashrc
 cd workspaces/rosneuro_ws/src/
 rm -r rosneuro_tutorials
-git clone https://github.com/rosneuro/rosneuro_acquisition.git
 git init
 git remote add origin https://github.com/Parelia/NeuroAssignment2.git
 git pull origin master --allow-unrelated-histories
 ```
 ```
 git branch --set-upstream-to=origin/master master
+cd ..
+catkin_make
 ```
 
 ## Contributes
