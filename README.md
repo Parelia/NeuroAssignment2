@@ -9,7 +9,7 @@ Finally, the *thresholding_node* makes a thresholding operation to find relevant
 Each node has been implemented in the respective *.cpp* file. \
 The outgoing data from all nodes, except for the acquisition one, is registered in a ROS bag file in the *bags* folder.
 
-The *my_acquisition.cpp* and *my_filterchain.cpp* files are copies of those from the **RosNeuro** libraries [rosneuro_acquisition](https://github.com/rosneuro/rosneuro_acquisition) and [rosneuro_filters](https://github.com/rosneuro/rosneuro_filters) (*FilterChainNode.cpp*), respectively. The only changes are to the input and output topics (to accommodate the assignment requirements) and the insertion of a *main* function for each. It has also been created a directory *config* with a YAML file, *MyChainCfg.yaml*, which contains the complete sequence of filters, with their parameters, to be loaded (required by the *filterchain_node*).
+The *acquisition_node* and *filterchain_node* are of those from the **RosNeuro** libraries [rosneuro_acquisition](https://github.com/rosneuro/rosneuro_acquisition) and [rosneuro_filters](https://github.com/rosneuro/rosneuro_filters), respectively. The only changes are to the input and/or output topics (to accommodate the assignment requirements), made with the remap on the *threshold_on_bandpower.launch* file. It has also been created a directory *config* with a YAML file, *MyChainCfg.yaml*, which contains the complete sequence of filters, with their parameters, to be loaded (required by the *filterchain_node*).
 
 The header files *bandpower.h* and *thresholding.h*, their implementations *bandpower.cpp* and *thresholding.cpp*, have been built from scratch using an object-oriented programming style.
 
