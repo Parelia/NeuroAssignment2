@@ -1,3 +1,9 @@
+/*
+	@file	bandpower.h
+	@brief	Header file for the BandPowerNode class that performs the computation of the power band of filtered EEG signals and publishes the results
+	@author	404 Brain Not Found
+*/
+
 #ifndef BANDPOWER_H
 #define BANDPOWER_H
 
@@ -16,8 +22,13 @@ class BandPowerNode {
 		std::vector<float> averages_;				// [channel x 1]
 
 	public:
+		// Constructor for the BandPowerNode class
 		BandPowerNode();
+		
+		// Function to generate a new EEG frame with updated data
 		rosneuro_msgs::NeuroFrame newEEGFrameFromOld(const rosneuro_msgs::NeuroFrame&, const std::vector<float>&);
+		
+		// Callback function that processes incoming filtered EEG data
 		void bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&);
 };
 

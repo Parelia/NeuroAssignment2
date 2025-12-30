@@ -1,3 +1,9 @@
+/*
+	@file	thresholding.h
+	@brief	Header file for the ThresholdingNode class that performs a thresholding operation to detect relevant EEG values
+	@author	404 Brain Not Found
+*/
+
 #ifndef THRESHOLDING_H
 #define THRESHOLDING_H
 
@@ -15,8 +21,13 @@ class ThresholdingNode {
 		float threshold;
 
 	public:
+		// Constructor for the ThresholdingNode class
 		ThresholdingNode();
+		
+		// Function to set parameters for the node (channel and threshold values)
 		bool setParams();
+		
+		// Callback function that processes incoming EEG data and performs thresholding
 		void thresholdingCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&);
 };
 
