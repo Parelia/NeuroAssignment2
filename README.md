@@ -1,13 +1,19 @@
 # Report of the second assignment of Neurorobotics
 
 ## Info
-This ROS-style package implements the pipeline demanded in the second assignment. It acquires data from a given GDF file, *data.gdf*, and publishes it as **NeuroFrame** messages ([rosneuro_msgs](https://github.com/rosneuro/rosneuro_msgs)) by means of the *acquisition_node*. Each published message represents a chunk of data as `samples x channels`. The file provides data at 512 Hz (sampling rate), and the acquisition is set to have a framerate of 16 Hz, hence, each **NeuroFrame** will contain 32 samples (x channels) of data.
+This ROS package implements the pipeline demanded in the second assignment of the Neurorobotics course in 25/26: \
+As shown in the *threshold_on_bandpower.launch* file, the first node, the *acquisition_node*, acquires data from external devices (in our task, a given GDF file), and publishes it as **NeuroFrame** messages ([rosneuro_msgs](https://github.com/rosneuro/rosneuro_msgs)). Each published message represents a chunk of data as `samples x channels`. The request was to provide data at 512 Hz (sampling rate), and the acquisition to have a framerate of 16 Hz; hence, each **NeuroFrame** contains 32 samples (x channels) of data.
+Then, the shared data is filtered by the *filterchain_node* in a given sequence of different single ones, and shared.
+Moreover, the previous output is read by the *bandpower_node*, which computes the power band of the signals.
+Finally, the *thresholding_node* makes a thresholding operation to find relevant values.
+Each node has been implemented in the respective *.cpp* file. \
+The outgoing data from all nodes, except for the acquisition one, is registered in a ROS bag file in the *bags* folder.
 
-The *my_acquisition.cpp* and *my_filterchain.cpp* files are copies of those from the **RosNeuro** libraries [rosneuro_acquisition](https://github.com/rosneuro/rosneuro_acquisition) and [rosneuro_filters](https://github.com/rosneuro/rosneuro_filters), respectively. The only modifications rely on the input and output topics (to fit the assignment request), and on the insertions of the *main* functions. It has also been created a directory *config* with a YAML file, *MyChainCfg.yaml*, which contains the complete sequence of filters with their parameters to load (necessary for the filterchian node).
+The *my_acquisition.cpp* and *my_filterchain.cpp* files are copies of those from the **RosNeuro** libraries [rosneuro_acquisition](https://github.com/rosneuro/rosneuro_acquisition) and [rosneuro_filters](https://github.com/rosneuro/rosneuro_filters) (*FilterChainNode.cpp*), respectively. The only changes are to the input and output topics (to accommodate the assignment requirements) and the insertion of a *main* function for each. It has also been created a directory *config* with a YAML file, *MyChainCfg.yaml*, which contains the complete sequence of filters, with their parameters, to be loaded (required by the *filterchain_node*).
 
-// A few new files have been created with an object-oriented style of programming, *bandpower.cpp* and *thresholding.cpp*, and their relative header files, *bandpower.h* and *thresholding.h*.
+The header files *bandpower.h* and *thresholding.h*, their implementations *bandpower.cpp* and *thresholding.cpp*, have been built from scratch with an object-oriented style of programming.
 
-Here is reported a graph of the relationship between all the project nodes:
+Here is a graph of the relationship between all the project nodes:
 ![Missing Image](rosgraph.png)
 
 Launch file line of the project:
