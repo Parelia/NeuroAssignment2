@@ -20,7 +20,7 @@ rosneuro_msgs::NeuroFrame BandPowerNode::newEEGFrameFromOld(const rosneuro_msgs:
 	
 	// Update the components of the new message
 	new_msg.eeg.info.nchannels = new_data.size();
-	new_msg.eeg.info.nsamples = 1;
+	new_msg.eeg.info.nsamples = 1; // Averages output
 	new_msg.eeg.data = new_data;
 	
 	return new_msg;
@@ -34,8 +34,8 @@ void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&
 
 	// Initialize buffer on the first callback (for the first batch of data)
 	if(this->ex_n == 0) {
-		this->buffer_.resize(nchannels, std::vector<float>(msg->sr, 0.0f));
-		this->averages_.resize(nchannels, 0.0f);
+		this->buffer.resize(nchannels, std::vector<float>(msg->sr, 0.0f));
+		this->averages.resize(nchannels, 0.0f);
 	}
 	// Increment the counter to track the number of processed frames
 	this->ex_n++;
@@ -43,10 +43,10 @@ void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&
 	// Buffer operations: discard old data and store the new one
 	for(int i=0; i < nchannels; i++) {
 		// Remove the oldest data
-		this->buffer_[i].erase(this->buffer_[i].begin(), this->buffer_[i].begin() + nsamples);
+		this->buffer[i].erase(this->buffer[i].begin(), this->buffer[i].begin() + nsamples);
 
 		// Add the new data to the end of the buffer
-		this->buffer_[i].insert(this->buffer_[i].end(), msg->eeg.data.begin() + i * nsamples, msg->eeg.data.begin() + (i + 1) * nsamples);
+		this->buffer[i].insert(this->buffer[i].end(), msg->eeg.data.begin() + i * nsamples, msg->eeg.data.begin() + (i + 1) * nsamples);
 	}
 
 	// Compute the bandpower only if the buffer is filled with enough data
@@ -54,16 +54,18 @@ void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&
 		for(int i=0; i < nchannels; i++) {
 			float current_bandpower = 0.0;
 			// Compute the bandpower for each channel (square -> log -> mean)
-			for(int j=0; j < buffer_[i].size(); j++)
-				current_bandpower += std::log(this->buffer_[i][j] * this->buffer_[i][j] + 1e-12);
-			this->averages_[i] = current_bandpower / this->buffer_[i].size();
+			for(int j=0; j < buffer[i].size(); j++) {
+				current_bandpower += std::log(this->buffer[i][j] * this->buffer[i][j] + 1e-12);
+				ROS_INFO("Buffer on %i, %i: %f", i+1 ,j,this->buffer[i][j]);
+			}
+			this->averages[i] = current_bandpower / this->buffer[i].size();
+			ROS_INFO("Average channel %i: %f", i+1,this->averages[i]);
 		}
 	}
 
 	// Publish the computed result
-	this->bandpower_pub_.publish(newEEGFrameFromOld(*msg, this->averages_));
-	ROS_INFO("A new NeuroFrame have been published");
-
+	this->bandpower_pub_.publish(newEEGFrameFromOld(*msg, this->averages));
+	
 	return;
 }
 

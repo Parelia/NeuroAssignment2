@@ -52,7 +52,7 @@
 		
 		<!-- thresholding arguments -->
 		<arg name="channel" default='9'/>
-		<arg name="threshold" default='1'/>
+		<arg name="threshold" default='10'/>
 	
 		<!-- thresholding node -->
 		<node name="thresholding_node" pkg="threshold_on_bandpower" type="thresholding" output="screen">
