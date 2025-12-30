@@ -21,7 +21,7 @@ Raw launch file line of the project:
 ```
 roslaunch threshold_on_bandpower threshold_on_bandpower.launch
 ```
-To change the input device, insert the path into parameter *devarg*:
+To change the input device, insert the path into parameter **devarg**:
 ```
 roslaunch threshold_on_bandpower threshold_on_bandpower.launch devarg:=
 ```
@@ -34,7 +34,7 @@ Check before starting:
 - https://wiki.ros.org/ROS/Tutorials/Recording%20and%20playing%20back%20data
 
 ## Set Up
-Paste and run in the terminal in /home, then open a new terminal in the workspace to launch the project.
+Paste and run in the terminal in */home*, then open a new terminal in the workspace to launch the project.
 ### User
 ```
 echo "source /opt/ros/noetic/setup.bash" >> .bashrc
