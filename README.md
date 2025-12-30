@@ -16,9 +16,14 @@ The header files *bandpower.h* and *thresholding.h*, their implementations *band
 Here is a graph of the relationship between all the project nodes:
 ![Missing Image](rosgraph.png)
 
-Launch file line of the project:
+## Usage
+Raw launch file line of the project:
 ```
 roslaunch threshold_on_bandpower threshold_on_bandpower.launch
+```
+To change the input device, insert the path into parameter *devarg*:
+```
+roslaunch threshold_on_bandpower threshold_on_bandpower.launch devarg:=
 ```
 
 ## Material
