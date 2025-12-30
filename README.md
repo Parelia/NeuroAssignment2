@@ -23,6 +23,7 @@ roslaunch threshold_on_bandpower threshold_on_bandpower.launch
 
 ## Material
 Check before starting:
+- https://github.com/rosneuro/rosneuro_msgs
 - https://github.com/rosneuro/rosneuro_filters.git
 - https://github.com/rosneuro/rosneuro_acquisition.git
 - https://wiki.ros.org/ROS/Tutorials/Recording%20and%20playing%20back%20data
