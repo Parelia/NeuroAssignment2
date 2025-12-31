@@ -3,7 +3,7 @@
 ## Info
 This ROS package implements the pipeline demanded in the second assignment of the Neurorobotics course in 25/26: \
 As shown in the *threshold_on_bandpower.launch* file, the first node, the *acquisition_node*, acquires data from external devices (in our task, a given GDF file), and publishes it as **NeuroFrame** messages ([rosneuro_msgs](https://github.com/rosneuro/rosneuro_msgs)). Each published message represents a chunk of data as `samples x channels`. The request was to provide data at 512 Hz (sampling rate), and the acquisition to have a framerate of 16 Hz; hence, each **NeuroFrame** contains 32 samples (x channels) of data.
-Then, the incoming data is processed by the *filterchain_node* with a given sequence of filters, and shared.
+From that, the shared data is processed by the *filterchain_node* with a given sequence of filters, and shared.
 Moreover, the previous output is read by the *bandpower_node*, which computes the power band of the signals.
 Finally, the *thresholding_node* makes a thresholding operation to find relevant values.
 Each node has been implemented in the respective *.cpp* file. \
