@@ -15,6 +15,7 @@
 		<arg name="devarg" default='/home/user/workspaces/rosneuro_ws/src/data.gdf'/>
 		<arg name="framerate" default='16'/>
 		<arg name="samplerate" default='512'/>
+		<arg name="reopen" default='false'/>
 		
 		<!-- acquisition node -->
 		<node name="acquisition_node" pkg="rosneuro_acquisition" type="acquisition" output="screen">
@@ -24,6 +25,7 @@
 			<param name="~devarg" value="$(arg devarg)"/>
 			<param name="~samplerate" value="$(arg samplerate)"/>
 			<param name="~framerate"  value="$(arg framerate)"/>
+			<param name="~reopen"  value="$(arg reopen)"/>
 		</node>
 	  	
 	  	
