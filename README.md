@@ -44,6 +44,8 @@ rm -r rosneuro_tutorials
 git clone https://github.com/Parelia/NeuroAssignment2.git
 mv NeuroAssignment2/threshold_on_bandpower .
 rm -rf NeuroAssignment2
+cd ..
+source /opt/ros/noetic/setup.bash
 catkin_make
 ```
 ### Editor
@@ -59,6 +61,7 @@ git pull origin master --allow-unrelated-histories
 ```
 git branch --set-upstream-to=origin/master master
 cd ..
+source /opt/ros/noetic/setup.bash
 catkin_make
 ```
 
