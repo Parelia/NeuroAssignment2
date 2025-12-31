@@ -67,5 +67,12 @@ catkin_make
 exit
 ```
 
-## Contributes
-
+## Contributes ***
+**Elia Parussolo** \
+Project direction, structure definition, and problem-solving \
+**Aymen Louachama** \
+Programming of *bandpower_node* and *thresholding_node* \
+**Elisabetta Moschella** \
+Programming of *bandpower_node* and *thresholding_node* \
+**Ginevra Borsetti** \
+Report and code comments drafting
