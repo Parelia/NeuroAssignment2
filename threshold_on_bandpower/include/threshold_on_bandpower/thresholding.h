@@ -19,6 +19,8 @@ class ThresholdingNode {
 		
 		int channel;
 		float threshold;
+		
+		static int progressive_ID;
 
 	public:
 		// Constructor for the ThresholdingNode class

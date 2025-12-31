@@ -55,11 +55,11 @@ void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&
 			float current_bandpower = 0.0;
 			// Compute the bandpower for each channel (square -> log -> mean)
 			for(int j=0; j < buffer[i].size(); j++) {
-				current_bandpower += std::log(this->buffer[i][j] * this->buffer[i][j] + 1e-12);
-				ROS_INFO("Buffer on %i, %i: %f", i+1 ,j,this->buffer[i][j]);
+				current_bandpower += this->buffer[i][j] * this->buffer[i][j];
+				// ROS_INFO("Buffer on %i, %i: %f", i+1 ,j,this->buffer[i][j]);
 			}
-			this->averages[i] = current_bandpower / this->buffer[i].size();
-			ROS_INFO("Average channel %i: %f", i+1,this->averages[i]);
+			this->averages[i] = std::log(current_bandpower / this->buffer[i].size() + 1e-12);
+			// ROS_INFO("Average channel %i: %f", i+1, this->averages[i]);
 		}
 	}
 

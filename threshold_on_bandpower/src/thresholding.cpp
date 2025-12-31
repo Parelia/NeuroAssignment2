@@ -6,6 +6,8 @@
 
 #include "threshold_on_bandpower/thresholding.h"
 
+int ThresholdingNode::progressive_ID = 0;
+
 // Constructor for the ThresholdingNode class
 ThresholdingNode::ThresholdingNode() {
 	// Attempt to set parameters for the node, if it fails, shutdown the node
@@ -48,10 +50,10 @@ void ThresholdingNode::thresholdingCallback(const rosneuro_msgs::NeuroFrame::Con
 	if(msg->eeg.data[this->channel-1] > this->threshold) {
 		// Create a new NeuroEvent message and publish it
 		rosneuro_msgs::NeuroEvent out_msg;
-		out_msg.event = 10;
+		out_msg.event = ++progressive_ID;
 		
 		this->thresholding_pub_.publish(out_msg);
-		ROS_INFO("A new NeuroEvent have been published");
+		ROS_INFO("A new NeuroEvent have been published with id: %i", out_msg.event);
 	}
 
 	return;
