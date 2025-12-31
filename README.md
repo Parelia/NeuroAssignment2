@@ -47,6 +47,7 @@ rm -rf NeuroAssignment2
 cd ..
 source /opt/ros/noetic/setup.bash
 catkin_make
+exit
 ```
 ### Editor
 ```
@@ -63,6 +64,7 @@ git branch --set-upstream-to=origin/master master
 cd ..
 source /opt/ros/noetic/setup.bash
 catkin_make
+exit
 ```
 
 ## Contributes
