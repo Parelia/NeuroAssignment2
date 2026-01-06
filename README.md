@@ -42,6 +42,8 @@ echo "source devel/setup.bash" >> .bashrc
 cd workspaces/rosneuro_ws/src/
 rm -r rosneuro_tutorials
 git clone https://github.com/Parelia/NeuroAssignment2.git
+```
+```
 mv NeuroAssignment2/threshold_on_bandpower .
 rm -rf NeuroAssignment2
 cd ..
@@ -67,9 +69,9 @@ catkin_make
 exit
 ```
 
-## Contributes ***
+## Contributes
 **Elia Parussolo** \
-Project direction, structure definition, and problem-solving \
+Programming of *.launch* file and problem-solving \
 **Aymen Louachama** \
 Programming of *bandpower_node* and *thresholding_node* \
 **Elisabetta Moschella** \
