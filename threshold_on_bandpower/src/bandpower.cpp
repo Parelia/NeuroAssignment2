@@ -26,7 +26,7 @@ rosneuro_msgs::NeuroFrame BandPowerNode::newEEGFrameFromOld(const rosneuro_msgs:
 	return new_msg;
 }
 
-// Callback function that processes incoming EEG data and performs thresholding
+// Callback function that processes incoming filtered EEG data
 void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr& msg) {
 	// Extract the number of channels and samples from the incoming message
 	int nchannels = msg->eeg.info.nchannels;
@@ -53,10 +53,10 @@ void BandPowerNode::bandpowerCallback(const rosneuro_msgs::NeuroFrame::ConstPtr&
 	if(this->ex_n * nsamples >= msg->sr) {
 		for(int i=0; i < nchannels; i++) {
 			float current_bandpower = 0.0;
-			// Compute the bandpower for each channel (square -> log -> mean)
+			// Compute the bandpower for each channel (slide/matlab style: square -> mean -> log)
 			for(int j=0; j < buffer[i].size(); j++) {
 				current_bandpower += this->buffer[i][j] * this->buffer[i][j];
-				// ROS_INFO("Buffer on %i, %i: %f", i+1 ,j,this->buffer[i][j]);
+				// ROS_INFO("Buffer on %i, %i: %f", i+1 , j, this->buffer[i][j]);
 			}
 			this->averages[i] = std::log(current_bandpower / this->buffer[i].size() + 1e-12);
 			// ROS_INFO("Average channel %i: %f", i+1, this->averages[i]);
