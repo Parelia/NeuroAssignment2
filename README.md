@@ -68,13 +68,3 @@ source /opt/ros/noetic/setup.bash
 catkin_make
 exit
 ```
-
-## Contributes
-**Elia Parussolo** \
-Programming of *.launch* file and problem-solving \
-**Aymen Louachama** \
-Programming of *bandpower_node* and *thresholding_node* \
-**Elisabetta Moschella** \
-Programming of *bandpower_node* and *thresholding_node* \
-**Ginevra Borsetti** \
-Report and code comments drafting
